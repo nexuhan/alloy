@@ -20,6 +20,9 @@ Main (unreleased)
 - Update yet-another-cloudwatch-exporter from v0.60.0 vo v0.61.0: (@morremeyer)
   - Fixes a bug where cloudwatch S3 metrics are reported as `0`
 
+- `prometheus.operator.*` components: Fixed a bug which would sometimes cause a 
+  "failed to create service discovery refresh metrics" error after a config reload. (@ptodev)
+
 ### Other changes
 
 - Small fix in UI stylesheet to fit more content into visible table area. (@defanator)
