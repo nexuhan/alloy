@@ -82,6 +82,7 @@ const namespaceDelimiter = "."
 type Options struct {
 	Logger      log.Logger            // Where to send logs.
 	StoragePath string                // Where to cache configuration on-disk.
+	ConfigPath  string                // Where the root config file is.
 	Metrics     prometheus.Registerer // Where to send metrics to.
 }
 
@@ -432,7 +433,7 @@ func (s *Service) parseAndLoad(b []byte) error {
 		return nil
 	}
 
-	err := ctrl.LoadSource(b, nil)
+	err := ctrl.LoadSource(b, nil, s.opts.ConfigPath)
 	if err != nil {
 		return err
 	}
