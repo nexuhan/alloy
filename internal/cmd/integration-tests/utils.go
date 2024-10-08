@@ -230,7 +230,7 @@ func collectFiles(root string) ([]fileInfo, error) {
 }
 
 func findContainerID(ctx context.Context, targetName string) (string, error) {
-	cli, err := client.NewClientWithOpts(client.FromEnv)
+	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
 		return "", err
 	}
