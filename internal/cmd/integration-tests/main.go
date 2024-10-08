@@ -42,13 +42,13 @@ func runIntegrationTests(cmd *cobra.Command, args []string) {
 		return
 	}
 
-	ctx := context.Background()
-
 	compose, err := tc.NewDockerCompose("./docker-compose.yaml")
 	if err != nil {
 		panic(fmt.Errorf("failed to parse the docker compose file: %v", err))
 	}
 
+	ctx := context.Background()
+	fmt.Println("Start test containers with docker compose config")
 	err = compose.Up(ctx)
 	if err != nil {
 		panic(fmt.Errorf("could not start the docker compose: %v", err))

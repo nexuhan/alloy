@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"io"
@@ -40,9 +41,15 @@ var logChan chan TestLog
 
 func executeCommand(command string, args []string, taskDescription string) {
 	fmt.Printf("%s...\n", taskDescription)
+
 	cmd := exec.Command(command, args...)
+
+	var outBuf, errBuf bytes.Buffer
+	cmd.Stdout = &outBuf
+	cmd.Stderr = &errBuf
+
 	if err := cmd.Run(); err != nil {
-		log.Fatalf("error executing %s: %v", taskDescription, err)
+		log.Fatalf("error executing %s: %v\nstdout: %s\nstderr: %s", taskDescription, err, outBuf.String(), errBuf.String())
 	}
 }
 
