@@ -9,7 +9,7 @@ on:
   pull_request:
 jobs:
   run_tests:
-    runs-on: github-hosted-ubuntu-arm64-small
+    runs-on: github-hosted-ubuntu-arm64
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
